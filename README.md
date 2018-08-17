@@ -26,8 +26,9 @@ Terraform Example of VPC and Virtual Instance Create in GCP using Modules
 1. Using `google_compute_instance` to create the Virtual Instance
 2. Create Addtional disk see `google_compute_disk` block
 3. For SSH Connection to run Scripts or **provisioner**. See `connection` block in `terraform-modules/virtual_instance/main.tf`.
+	
 	Note: Change the `private_key` file path.
-4. I am using `network_interface` as **default**. Add the blow code
+4. I am using `network_interface` as **default**. Modify the below code as separate VPC
 
 	```
 	module "vpc" {
@@ -56,4 +57,4 @@ See More Documentation on [Terraform Site](https://www.terraform.io/docs/provide
 8. Run `terrafor apply`.
 
 #### Note:
-	If remove `credentials` field in terraform backend. Run `GOOGLE_CREDENTIALS=$(cat path/credentials.json) terraform init`. Same follow to `terraform plan` , `terraform apply` and so. If see terraform apply logs Run `TF_LOG=ERROR terraform apply`. If you want more on logs use `DEBUG`, `TRACE`, `INFO`. To save the logs in particulat field add `TF_LOG_PATH=path/file.txt`
+	If remove `credentials` field from terraform backend. Run `GOOGLE_CREDENTIALS=$(cat path/credentials.json) terraform init`. Same follow to `terraform plan` , `terraform apply` and so. If see terraform apply logs Run `TF_LOG=ERROR terraform apply`. If you want more on logs use `DEBUG`, `TRACE`, `INFO`. To save the logs in particulat field add `TF_LOG_PATH=path/file.txt`
