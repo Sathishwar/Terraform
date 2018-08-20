@@ -10,11 +10,9 @@ resource "google_compute_disk" "managed_data_disk" {
 	zone = "${var.zone}"
   size = "${var.data_disk_size}"
 }
-/*
 module "vpc" {
-  source = "../../vpc/"
+  source = "../vpc/"
 }
-*/
 
 // Create Virtual Instance Block
 
@@ -35,10 +33,7 @@ resource "google_compute_instance" "virtual_instance" {
     }
   }
   network_interface {
-    #network = "${module.vpc.vpc_name}"
-    #subnetwork = "${module.vpc.subnet_name}"
-    #access_config {}
-    network = "default"
+    subnetwork = "${module.vpc.subnet_name}"
     access_config {}
   }
   attached_disk {
